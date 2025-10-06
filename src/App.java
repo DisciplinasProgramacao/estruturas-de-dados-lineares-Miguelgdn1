@@ -1,9 +1,11 @@
-import java.nio.charset.Charset;
-import java.time.LocalDate;
-import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.Charset;
+import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
 
 public class App {
 
@@ -208,7 +210,9 @@ public class App {
      */
     public static void finalizarPedido(Pedido pedido) {
     	
-    	// TODO
+    	Queue<Pedido> fila = new LinkedList<>(); 
+        fila.offer(pedido);
+         
     }
     
     public static void listarProdutosPedidosRecentes() {
