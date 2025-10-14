@@ -3,8 +3,6 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class App {
@@ -209,15 +207,31 @@ public class App {
      * @param pedido O pedido que deve ser finalizado.
      */
     public static void finalizarPedido(Pedido pedido) {
-    	
-    	Queue<Pedido> fila = new LinkedList<>(); 
-        fila.offer(pedido);
-         
+        if(pedido == null){
+            System.out.println(("Não há pedido em andamento para ser finalizado!"));
+        }
+        else{
+            pilhaPedidos.empilhar(pedido);
+            System.out.println("Pedido finalizado");
+            System.out.println(pedido);
+        }
     }
     
     public static void listarProdutosPedidosRecentes() {
-    	
-    	// TODO
+        cabecalho();
+        System.out.println("Listando produtos dos pedidos mais recentes...");
+        int numPedidos = lerOpcao("Quantos pedidos recentes devem ser listados?", Integer.class);
+        Pilha<Pedido> subPilhaPedidos = pilhaPedidos.subPilha(numPedidos);
+        while(!subPilhaPedidos.vazia()){
+            Pedido pedido = subPilhaPedidos.desempilhar();
+            System.out.println(pedido);
+        }
+        if(pilhaPedidos.vazia()){
+            System.out.println("Não há pedidos cadastrados!");
+        }
+        else{
+            System.out.println("Pedidos listados com sucesso!");
+        }
     }
     
 	public static void main(String[] args) {
