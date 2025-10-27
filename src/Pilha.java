@@ -3,11 +3,11 @@ import java.util.NoSuchElementException;
 public class Pilha<E> {
 
 	private Celula<E> topo;
-	private Celula<E> fundo;
+	private final Celula<E> fundo;
 
 	public Pilha() {
 
-		Celula<E> sentinela = new Celula<E>();
+		Celula<E> sentinela = new Celula<>();
 		fundo = sentinela;
 		topo = sentinela;
 
@@ -19,7 +19,7 @@ public class Pilha<E> {
 
 	public void empilhar(E item) {
 
-		topo = new Celula<E>(item, topo);
+		topo = new Celula<>(item, topo);
 	}
 
 	public E desempilhar() {
@@ -56,7 +56,7 @@ public class Pilha<E> {
 		if (numItens < 0) {
 			throw new IllegalArgumentException("O número de itens deve ser não-negativo.");
 		}
-		Pilha<E> novaPilha = new Pilha<E>();
+		Pilha<E> novaPilha = new Pilha<>();
 		Pilha<Integer> pilhaAuxiliar = new Pilha<>();
 
 		for(int i = 0; i<numItens && !this.vazia(); i++) {
